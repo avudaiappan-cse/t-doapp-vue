@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS</title>
+    <style>
+      *,
+      html {
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+        font-size: large;
+      }
+      .focus:focus {
+        outline-color: blueviolet;
+      }
+      .todo__container {
+        padding: 1rem;
+        width: 30%;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+        font-size: medium;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #eee;
+        box-shadow: 0.1rem 0.1rem 0.1rem #ccc;
+      }
+      .btn {
+        background-color: tomato;
+        border: none;
+        padding: 0.4rem;
+        color: white;
+        border-radius: 6px;
+        outline-color: tomato;
+      }
+      @media only screen and (max-width: 720px) {
+        .todo__container {
+          margin: 1rem;
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header-component title="Vue JS"></header-component>
+      <br />
+      <div style="text-align: center;">
+        <input
+          class="focus"
+          style="padding: 0.5rem; border: 1px solid #ccc;"
+          type="text"
+          placeholder="Add a new todo"
+          v-model="newTodo"
+        />
+        <button
+          class="focus"
+          style="
+            padding: 0.5rem;
+            border: none;
+            background-color: blueviolet;
+            color: white;
+          "
+          @click="addTodo"
+        >
+          Add todo
+        </button>
+        <br />
+        <br />
+        <div v-if="todos.length > 0">
+          <div v-for="(todo,index) in todos" class="todo__container">
+            <input
+              type="checkbox"
+              name="todo"
+              @click="updateTodo(index)"
+              v-model="todo.completed"
+            />
+            <del v-if="todo.completed">{{todo.task}}</del>
+            <span v-else>{{todo.task}}</span>
+
+            <button class="btn" @click="deleteTodo(index)">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div v-else>
+          <br />
+          <p style="color: #aaa;">No todo till! Add to see them.</p>
+        </div>
+      </div>
+    </div>
+    <script src="vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
