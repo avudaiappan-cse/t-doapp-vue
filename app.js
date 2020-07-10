@@ -50,7 +50,7 @@ const app = new Vue({
       this.newTodo = "";
     },
     updateTodo: function (index) {
-      this.todos[index].completed = ~this.todos[index].completed;
+      this.todos[index].completed = !this.todos[index].completed;
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
     deleteTodo: function (index) {
